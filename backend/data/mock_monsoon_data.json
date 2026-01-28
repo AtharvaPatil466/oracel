@@ -1,0 +1,160 @@
+{
+    "2019": {
+        "year": 2019,
+        "scenario_name": "Delayed Onset & Severe Deficit (Drought)",
+        "all_india_rainfall_mm": 756.0,
+        "lpa_mm": 880.6,
+        "deviation_percent": -14,
+        "onset_date": "2019-06-08",
+        "normal_onset_date": "2019-06-01",
+        "withdrawal_date": "2019-10-09",
+        "status": "Deficit",
+        "regional_data": [
+            {
+                "region": "Northwest India",
+                "rainfall_mm": 500.0,
+                "deviation": -15,
+                "status": "Deficit"
+            },
+            {
+                "region": "Central India",
+                "rainfall_mm": 800.0,
+                "deviation": -20,
+                "status": "Deficit"
+            },
+            {
+                "region": "South Peninsula",
+                "rainfall_mm": 600.0,
+                "deviation": -12,
+                "status": "Deficit"
+            },
+            {
+                "region": "East & Northeast India",
+                "rainfall_mm": 1300.0,
+                "deviation": -5,
+                "status": "Normal"
+            }
+        ],
+        "states": {
+            "Maharashtra": {
+                "rainfall_mm": 650,
+                "deviation": -28,
+                "status": "Deficit",
+                "risk_level": "High"
+            },
+            "Karnataka": {
+                "rainfall_mm": 700,
+                "deviation": -18,
+                "status": "Deficit",
+                "risk_level": "Medium"
+            },
+            "Kerala": {
+                "rainfall_mm": 1800,
+                "deviation": -10,
+                "status": "Normal",
+                "risk_level": "Low"
+            },
+            "Rajasthan": {
+                "rainfall_mm": 300,
+                "deviation": -30,
+                "status": "Deficit",
+                "risk_level": "High"
+            }
+        }
+    },
+    "2022": {
+        "year": 2022,
+        "scenario_name": "Volatile & Late Withdrawal (Excess)",
+        "all_india_rainfall_mm": 933.0,
+        "lpa_mm": 880.6,
+        "deviation_percent": 6,
+        "onset_date": "2022-05-29",
+        "normal_onset_date": "2022-06-01",
+        "withdrawal_date": "2022-10-23",
+        "status": "Normal",
+        "regional_data": [
+            {
+                "region": "Northwest India",
+                "rainfall_mm": 580,
+                "deviation": 1,
+                "status": "Normal"
+            },
+            {
+                "region": "Central India",
+                "rainfall_mm": 1150,
+                "deviation": 19,
+                "status": "Excess"
+            },
+            {
+                "region": "South Peninsula",
+                "rainfall_mm": 890,
+                "deviation": 22,
+                "status": "Excess"
+            },
+            {
+                "region": "East & Northeast India",
+                "rainfall_mm": 1100,
+                "deviation": -18,
+                "status": "Deficit"
+            }
+        ],
+        "states": {
+            "Maharashtra": {
+                "rainfall_mm": 1150,
+                "deviation": 23,
+                "status": "Excess",
+                "risk_level": "Low"
+            },
+            "Delhi": {
+                "rainfall_mm": 550,
+                "deviation": -12,
+                "status": "Deficit",
+                "risk_level": "Medium"
+            }
+        }
+    },
+    "2023": {
+        "year": 2023,
+        "scenario_name": "El Nino Impact (Simulated Deficit)",
+        "all_india_rainfall_mm": 820.0,
+        "lpa_mm": 880.6,
+        "deviation_percent": -6,
+        "onset_date": "2023-06-04",
+        "withdrawal_date": "2023-09-30",
+        "status": "Normal",
+        "regional_data": [
+            {
+                "region": "Northwest India",
+                "rainfall_mm": 550,
+                "deviation": -5,
+                "status": "Normal"
+            },
+            {
+                "region": "Central India",
+                "rainfall_mm": 900,
+                "deviation": -4,
+                "status": "Normal"
+            },
+            {
+                "region": "South Peninsula",
+                "rainfall_mm": 650,
+                "deviation": -9,
+                "status": "Normal"
+            },
+            {
+                "region": "East & Northeast India",
+                "rainfall_mm": 1150,
+                "deviation": -18,
+                "status": "Deficit"
+            }
+        ],
+        "states": {
+            "Maharashtra": {
+                "rainfall_mm": 800,
+                "deviation": -15,
+                "status": "Deficit",
+                "risk_level": "Medium"
+            }
+        }
+    }
+}

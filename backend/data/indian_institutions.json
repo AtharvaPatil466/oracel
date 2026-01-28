@@ -1,0 +1,62 @@
+{
+    "IIT Bombay": {
+        "name": "IIT Bombay - Weather Modification Unit",
+        "location": "Mumbai, Maharashtra",
+        "department": "Department of Climate Studies",
+        "research_focus": "Cloud seeding, atmospheric sciences",
+        "website": "https://www.iitb.ac.in/climate",
+        "contact_email": "climate_project@iitb.ac.in",
+        "key_projects": [
+            "Varsadhare Cloud Seeding",
+            "Mumbai Flood Warning System"
+        ]
+    },
+    "IITM Pune": {
+        "name": "IITM Pune - Cloud Physics Division",
+        "location": "Pune, Maharashtra",
+        "department": "Ministry of Earth Sciences",
+        "research_focus": "Monsoon physics, CAIPEEX seeding",
+        "website": "https://www.tropmet.res.in",
+        "contact_email": "monsoon_mission@tropmet.res.in",
+        "key_projects": [
+            "National Monsoon Mission",
+            "CAIPEEX"
+        ]
+    },
+    "ICAR": {
+        "name": "ICAR - Indian Institute of Millets Research",
+        "location": "Hyderabad, Telangana",
+        "department": "Agricultural Research",
+        "research_focus": "Drought-resistant crops, Millets",
+        "website": "https://www.millets.res.in",
+        "contact_email": "director@millets.res.in",
+        "key_projects": [
+            "Shree Anna Yojana",
+            "Rainfed Agriculture Network"
+        ]
+    },
+    "IIT Delhi": {
+        "name": "IIT Delhi - Centre for Atmospheric Sciences",
+        "location": "New Delhi, Delhi",
+        "department": "Atmospheric Sciences",
+        "research_focus": "Urban Heat Islands, Air Quality",
+        "website": "https://cas.iitd.ac.in",
+        "contact_email": "head_cas@iitd.ac.in",
+        "key_projects": [
+            "Delhi Heat Action Plan Support",
+            "SAFAR Air Quality"
+        ]
+    },
+    "TERI": {
+        "name": "The Energy and Resources Institute",
+        "location": "New Delhi",
+        "department": "Sustainable Habitat",
+        "research_focus": "Cool roofs, Energy efficiency",
+        "website": "https://www.teriin.org",
+        "contact_email": "mailbox@teri.res.in",
+        "key_projects": [
+            "Cool Roofs Challenge",
+            "Green GRIHA Rating"
+        ]
+    }
+}

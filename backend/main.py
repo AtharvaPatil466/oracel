@@ -10,6 +10,8 @@ import json
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+from api import monsoon_routes
+
 app = FastAPI()
 
 app.add_middleware(
@@ -20,55 +22,29 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(monsoon_routes.router, prefix="/api")
+
 class Intervention(BaseModel):
     user_input: str
     investment: float = 1.0
 
-from oracle import oracle_engine
+from reasoning.llm_engine import llm_engine
 
-@app.post("/api/simulate")
-async def analyze_simulation(data: Intervention):
-    try:
-        logger.info(f"Received simulation request: {data.user_input}")
-        result = oracle_engine.process_intervention(data.user_input)
-        
-        if result["mitigated_data"] is None:
-            logger.error("Simulation failed unexpectedly.")
-            return {"status": "error", "message": "Simulation failed to process data."}
-
-        return {
-            "status": "success",
-            "narrative": f"Analyzing '{data.user_input}'...",
-            "lives_saved": result["lives_saved"],
-            "mitigated_data": result["mitigated_data"]
-        }
-    except Exception as e:
-        logger.exception(f"Error during simulation: {str(e)}")
-        return {"status": "error", "message": "Internal server error during simulation."}
 
 @app.post("/api/simulate/stream")
 async def analyze_simulation_stream(data: Intervention):
     try:
-        logger.info(f"Received streaming simulation request: {data.user_input} with ${data.investment}B")
+        logger.info(f"Received streaming simulation request: {data.user_input} with ₹{data.investment}B")
+        # Convert Billions USD (frontend slider) to INR (approx 1B USD = 8000 Cr INR) 
+        # But wait, frontend slider is just a number. If user treats it as 1.0 = 10 Cr or 1 B USD?
+        # Let's assume input is in Crores INR contextually for now, or just pass raw.
+        # Actually slider in 922 says "Billions". We should fix frontend to be "Crores".
+        # For now, let's treat the unit as "Crores" in the backend.
+        
         return StreamingResponse(
-            oracle_engine.process_intervention_stream(data.user_input, data.investment),
+            llm_engine.stream_analysis(data.user_input, investment_inr=data.investment * 10000000), # Mock conversion
             media_type="application/x-ndjson"
         )
     except Exception as e:
         logger.exception(f"Error during streaming simulation: {str(e)}")
         return {"status": "error", "message": "Internal server error during simulation."}
-
-@app.get("/api/baseline")
-def get_baseline():
-    try:
-        # Serve the dynamically processed data
-        data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'processed', 'hurricanes.json')
-        if not os.path.exists(data_path):
-             # Fallback to empty if pipeline hasn't run
-            return {"type": "FeatureCollection", "features": []}
-            
-        with open(data_path, 'r') as f:
-            return json.load(f)
-    except Exception as e:
-        logger.error(f"Failed to serve baseline: {e}")
-        return {"error": "Data unavailable"}

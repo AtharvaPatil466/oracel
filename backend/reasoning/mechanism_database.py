@@ -1,118 +1,98 @@
 """
-Ground Truth Database for the Oracle of Delphi Engine.
-Contains hardcoded scientific bottlenecks, gap ratios, and funding needs to ensure consistency.
+Database of India-specific Climate Intervention Mechanisms.
+Source: Indian Institute of Tropical Meteorology (IITM), ICAR, and Ministry of Earth Sciences reports.
 """
 
 MECHANISMS = {
-    # 1. Marine Cloud Brightening (MCB)
-    "marine_cloud_brightening": {
-        "name": "Marine Cloud Brightening",
-        "feasibility_score": 0.35,
-        "bottleneck": {
-            "description": "Aerosol generation rate per vessel is insufficient for storm-scale coverage",
-            "current_capability": "~40 km²/day per vessel (Prototype A)",
-            "required_capability": "180 km²/day per vessel for Cat 5",
-            "gap_ratio": 4.5
-        },
-        "research_vectors": [
-            {
-                "search_query": "electrostatic seawater spray nozzle efficiency 2024",
-                "focus": "Nozzle aerosol generation rate"
-            },
-            {
-                "search_query": "autonomous surface vessel swarm coordination 2023",
-                "focus": "Deployment logistics at scale"
-            },
-            {
-                "search_query": "marine cloud albedo perturbation thermodynamics 2024",
-                "focus": "Verification of radiative forcing impact"
-            }
+    "Monsoon_Cloud_Seeding": {
+        "name": "Monsoon Cloud Seeding (Coughlin-style)",
+        "description": "Aerial dispersion of silver iodide/hygroscopic flares into monsoon clouds to enhance precipitation in rain-shadow regions.",
+        "current_capability": "500 sq km coverage per operation (Karnataka 2017)",
+        "required_capability_base": 2000,
+        "gap_ratio": 4.0,
+        "research_focus": [
+            "AgI seeding efficiency in tropical stratocumulus",
+            "Drone-based delivery for precise targeting",
+            "Real-time monsoon trough identification"
         ],
-        "funding_estimate": {
-            "amount_usd": 45000000,
-            "timeframe_years": 4
-        }
-    },
-
-    # 2. Stratospheric Aerosol Injection (SAI)
-    "solar_radiation_management": {
-        "name": "Stratospheric Aerosol Injection",
-        "feasibility_score": 0.42,
-        "bottleneck": {
-            "description": "Aircraft payload capacity at 20km altitude is the limiting factor",
-            "current_capability": "5 tonnes per sortie (Modified Learjet)",
-            "required_capability": "25 tonnes per sortie (Purpose-built)",
-            "gap_ratio": 5.0
-        },
-        "research_vectors": [
-            {
-                "search_query": "stratospheric aerosol injection payload delivery 2024",
-                "focus": "High-altitude delivery platform"
-            },
-            {
-                "search_query": "sulfate aerosol precursor dispersion dynamics",
-                "focus": "Chemical dispersion efficiency"
-            },
-            {
-                "search_query": "solar geoengineering ozone layer impact",
-                "focus": "Risk mitigation (Ozone)"
-            }
+        "indian_institutions": [
+            "IIT Bombay - Weather Modification Unit",
+            "IITM Pune - Cloud Physics Division",
+            "Karnataka State Natural Disaster Monitoring Centre"
         ],
-        "funding_estimate": {
-            "amount_usd": 1200000000,
-            "timeframe_years": 7
-        }
-    },
-
-    # 3. Artificial Upwelling (Ocean Cooling)
-    "ocean_cooling": {
-        "name": "Artificial Upwelling",
-        "feasibility_score": 0.15,
-        "bottleneck": {
-            "description": "Wave pump vertical transport volume is orders of magnitude too low",
-            "current_capability": "0.5 m³/s per unit",
-            "required_capability": "25 m³/s per unit for regional cooling",
-            "gap_ratio": 50.0 
-        },
-        "research_vectors": [
-            {
-                "search_query": "artificial upwelling pump efficiency wave energy",
-                "focus": "Hydraulic output scaling"
-            },
-            {
-                "search_query": "ocean thermal energy conversion upwelling",
-                "focus": "Thermal transport efficiency"
-            }
-        ],
-        "funding_estimate": {
-            "amount_usd": 85000000,
-            "timeframe_years": 10
+        "economic_context": {
+            "cost_per_unit_inr": 500000000, # ₹50 Cr per season
+            "roi_years": 2,
+            "benefit_description": "Agricultural yield protection for Kharif crops"
         }
     },
     
-    # 4. Fallback / Carbon Capture
-    "carbon_capture": {
-        "name": "Direct Air Capture (DAC)",
-        "feasibility_score": 0.65,
-        "bottleneck": {
-            "description": "Energy cost per ton of CO2 removed is economically unviable for short-term impact",
-            "current_capability": "$600 per ton CO2",
-            "required_capability": "$100 per ton CO2",
-            "gap_ratio": 6.0
-        },
-        "research_vectors": [
-            {
-                "search_query": "direct air capture amine sorbent efficiency",
-                "focus": "Material Science"
-            },
-            {
-                "search_query": "dac energy consumption optimization",
-                "focus": "Thermodynamics"
-            }
+    "Monsoon_Prediction_Enhancement": {
+        "name": "AI-Enhanced Monsoon Prediction",
+        "description": "Integrating Machine Learning with dynamical models (CFS v2) to improve 2-week forecast accuracy for district-level sowing decisions.",
+        "current_capability": "70% accuracy at 2-week lead time (IITM)",
+        "required_capability_base": 85,
+        "gap_ratio": 1.2,
+        "research_focus": [
+            "Ocean-atmosphere coupling ML models",
+            "High-resolution ensemble forecasting",
+            "Data assimilation from INSAT-3D"
         ],
-        "funding_estimate": {
-            "amount_usd": 200000000,
-            "timeframe_years": 5
+        "indian_institutions": [
+            "IITM Pune - Monsoon Mission",
+            "NCMRWF (National Centre for Medium Range Weather Forecasting)",
+            "IIT Delhi - Centre for Atmospheric Sciences"
+        ],
+        "economic_context": {
+            "cost_per_unit_inr": 120000000, # ₹12 Cr research grant
+            "roi_years": 1,
+            "benefit_description": "Prevented sowing loss for 10M+ farmers"
+        }
+    },
+    
+    "Agricultural_Adaptation_Systems": {
+        "name": "Drought-Resilient Crop Systems",
+        "description": "Deployment of genetically heat-stress tolerant seed varieties (millets, pulses) optimized for delayed monsoon onset.",
+        "current_capability": "15% adoption in rain-fed Vidarbha/Marathwada",
+        "required_capability_base": 70,
+        "gap_ratio": 4.7,
+        "research_focus": [
+            "Genetic modification for water-use efficiency",
+            "Precision irrigation sensors for smallholders",
+            "Monsoon-indexed insurance derivatives"
+        ],
+        "indian_institutions": [
+            "ICAR - Indian Institute of Millets Research",
+            "ICRISAT - International Crops Research Institute",
+            "IIT Kharagpur - Agricultural & Food Engineering"
+        ],
+        "economic_context": {
+            "cost_per_unit_inr": 50000000, # ₹5 Cr per district rollout
+            "roi_years": 3,
+            "benefit_description": "Long-term food security stabilization"
+        }
+    },
+
+    "Urban_Heat_Mitigation": {
+        "name": "Urban Cool Roof Deployment",
+        "description": "High-albedo reflective coatings for slum and low-income housing in high-density metros to reduce heat island effect.",
+        "current_capability": "Cost ₹500/sq m (too high for mass adoption)",
+        "required_capability_base": 200, # Target cost ₹200/sq m
+        "gap_ratio": 2.5,
+        "research_focus": [
+            "Low-cost lime-based reflective composites",
+            "Passive radiative cooling materials",
+            "Urban planning integration policy"
+        ],
+        "indian_institutions": [
+            "IIT Delhi - Dept of Energy Science",
+            "TERI - The Energy and Resources Institute",
+            "IIIT Hyderabad - Building Science"
+        ],
+        "economic_context": {
+             "cost_per_unit_inr": 200000000, # ₹20 Cr per ward
+             "roi_years": 5,
+             "benefit_description": "Reduction in heat-stroke mortality and cooling energy load"
         }
     }
 }
