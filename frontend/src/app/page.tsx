@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
 // Dynamic Import for Map (Client Side Only)
@@ -20,6 +20,27 @@ export default function Home() {
     const { monsoonData } = useStreamStore();
     const [userInput, setUserInput] = useState('');
     const [investmentCr, setInvestmentCr] = useState(50.0); // Crores
+    const { setMonsoonData, setLoading, setError: setStoreError } = useStreamStore();
+
+    // Initial Data Fetch
+    useEffect(() => {
+        const fetchMonsoonData = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch('http://localhost:8001/api/streams/climate/monsoon/current');
+                if (!response.ok) throw new Error('Failed to fetch monsoon data');
+                const data = await response.json();
+                setMonsoonData(data.metadata); // The metadata contains the full MonsoonData object
+            } catch (err: any) {
+                console.error("Fetch error:", err);
+                setStoreError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMonsoonData();
+    }, [setMonsoonData, setLoading, setStoreError]);
 
     // Simulation State
     const [isAnalyzing, setIsAnalyzing] = useState(false);

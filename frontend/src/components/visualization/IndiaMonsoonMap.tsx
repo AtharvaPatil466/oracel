@@ -6,7 +6,8 @@ import { scaleQuantile } from 'd3-scale';
 import { formatIndianNumber } from '@/utils/indian_number_format';
 
 // TopoJSON for India States
-const INDIA_TOPO_JSON = "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/india/india-states.json";
+// TopoJSON for India States
+const INDIA_TOPO_JSON = "https://raw.githubusercontent.com/udit-001/india-maps-data/main/topojson/india.json";
 
 interface StateData {
     rainfall_mm: number;
