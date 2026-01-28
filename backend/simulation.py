@@ -126,19 +126,35 @@ async def run_oracle_simulation_stream(scenario: str, investment: float = 1.0):
 
     yield json.dumps({"status": "progress", "message": "Parsing Intervention Semantics...", "progress": 20}) + "\n"
     
-    # 1. Analyze Semantics
-    analysis = llm_engine.analyze_strategy(scenario)
-    score = analysis["score"]
-    mechanism = analysis["mechanism"]
-    raw_query = analysis["search_query"]
+    # 1. Analyze Semantics (The Oracle of Delphi)
+    # Convert investment from Billions to raw USD for the check (approx)
+    investment_usd = investment * 1_000_000_000 
+    analysis = llm_engine.analyze_strategy(scenario, investment_usd)
     
-    yield json.dumps({"status": "progress", "message": f"Identified Mechanism: {mechanism}", "progress": 35}) + "\n"
+    # Extract Scoring for Physics
+    score = analysis["feasibility_score"] # Use the database score
+    mechanism = analysis["mechanism"]
+    
+    # Stream the FULL Oracle Analysis immediately
+    yield json.dumps({
+        "status": "oracle_analysis",
+        "data": analysis,
+        "progress": 40,
+        "message": f"Identified Mechanism: {mechanism}"
+    }) + "\n"
+    
     await asyncio.sleep(0.8)
 
     # 2. Fetch Research
-    yield json.dumps({"status": "progress", "message": f"Querying Global Research Index: [{raw_query}]", "progress": 50}) + "\n"
-    papers = arxiv_client.search_papers(analysis["raw_keywords"][0], max_results=3)
-    await asyncio.sleep(1.0) # Simulate network Time
+    # Use the first vector for the simulation stream log, but frontend will use the full list
+    primary_vector = analysis["research_vectors"][0]["search_query"]
+    yield json.dumps({"status": "progress", "message": f"Querying Research: [{primary_vector}]", "progress": 55}) + "\n"
+    
+    # We still fetch papers for backend completeness, but frontend might fetch them or use what we send
+    # For now, let's just let the frontend handle the display based on the vectors
+    # But to keep existing logic working, we'll fetch a few
+    papers = arxiv_client.search_papers(primary_vector, max_results=2)
+    await asyncio.sleep(0.5) 
             
     # Apply Investment Multiplier
     # Formula: Multiplier = 1 + log10(investment) * 0.5

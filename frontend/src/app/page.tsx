@@ -27,7 +27,8 @@ export default function Home() {
     const [progress, setProgress] = useState(0);
     const [simulationMessage, setSimulationMessage] = useState('');
     const [investment, setInvestment] = useState(1.0); // Billions
-    const [papers, setPapers] = useState<any[]>([]);
+    const [papers, setPapers] = useState<any[]>([]); // Keeps backward compat but mostly unused now
+    const [oracleAnalysis, setOracleAnalysis] = useState<any>(null); // New Phase 5 State
 
     const runSimulation = async () => {
         if (!userInput.trim()) return;
@@ -37,7 +38,8 @@ export default function Home() {
         setSimulationStatus('Analyzing Interventions...');
         setProgress(0);
         setSimulationMessage('Initializing connection...');
-        setPapers([]); // Reset papers
+        setPapers([]);
+        setOracleAnalysis(null); // Reset Oracle
 
         try {
             const response = await fetch('http://localhost:8001/api/simulate/stream', {
@@ -69,6 +71,11 @@ export default function Home() {
                         const data = JSON.parse(line);
 
                         if (data.status === 'progress') {
+                            setProgress(data.progress);
+                            setSimulationMessage(data.message);
+                        } else if (data.status === 'oracle_analysis') {
+                            // Phase 5: Handle the detailed analysis
+                            setOracleAnalysis(data.data);
                             setProgress(data.progress);
                             setSimulationMessage(data.message);
                         } else if (data.status === 'complete') {
@@ -232,7 +239,7 @@ export default function Home() {
 
                 {/* Right Sidebar - Science Feed (Hidden on mobile/tablet if needed, but we have space) */}
                 <div className="hidden 2xl:block col-span-12 xl:col-span-3 lg:col-span-3 h-[calc(100vh-48px)]">
-                    <ScienceFeed status={simulationStatus} papers={papers} />
+                    <ScienceFeed status={simulationStatus} oracleData={oracleAnalysis} userFunding={investment} />
                 </div>
             </div>
         </main>
