@@ -4,8 +4,8 @@ import os
 from datetime import datetime
 
 # Configuration
-INPUT_CSV = 'backend/data/ibtracs_na.csv'
-OUTPUT_GEOJSON = 'frontend/public/data/hurricanes_baseline.json'
+INPUT_CSV = 'data/raw/ibtracs_NA.csv'
+OUTPUT_GEOJSON = '../frontend/public/data/hurricanes_baseline.json'
 START_YEAR = 2004
 
 def process_hurricanes():
